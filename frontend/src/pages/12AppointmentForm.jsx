@@ -117,7 +117,7 @@ const AppointmentForm = () => {
                         disabled={!isFormEnabled}
                     />
                     <label htmlFor="termsAccepted" className="text-sm text-white">
-                        I accept the <a href="" className="text-blue-400 hover:underline">Terms and Conditions</a>
+                        I accept the <a href="#" className="text-blue-400 hover:underline">Terms and Conditions</a>
                     </label>
                 </div>
                 {errors.termsAccepted && <p className="text-red-500 text-sm mt-1 mb-4">{errors.termsAccepted.message}</p>}

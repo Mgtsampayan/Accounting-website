@@ -7,7 +7,7 @@ import backgroundVideo from '../images/bg_1.mp4';
 import accountingImage from '../images/OURBESTDEAL.png';
 import prof_acctg_services from '../images/prof_acctg_services.png';
 
-const ListItem = React.memo(({ text }) => (
+const ListItem = React.memo(({ children }) => (
     <motion.li
         className="flex items-center space-x-3"
         initial={{ opacity: 0, y: 10 }}
@@ -16,14 +16,14 @@ const ListItem = React.memo(({ text }) => (
         whileHover={{ x: 5 }}
     >
         <CheckCircle className="text-black w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 flex-shrink-0" />
-        <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-black">{text}</span>
+        <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-black">{children}</span>
     </motion.li>
 ));
 
 ListItem.displayName = 'ListItem';
 
 ListItem.propTypes = {
-    text: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
 };
 
 function OurBestDeal() {
@@ -83,7 +83,7 @@ function OurBestDeal() {
                             </div>
                             <ul className="w-full space-y-4 sm:space-y-6 md:space-y-8 mb-4 sm:mb-6 md:mb-8">
                                 {services.map((service, index) => (
-                                    <ListItem key={index} text={<span className="font-bold">{service}</span>} />
+                                    <ListItem key={index}><span className="font-bold">{service}</span></ListItem>
                                 ))}
                             </ul>
                             <motion.div
