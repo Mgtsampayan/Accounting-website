@@ -4,14 +4,14 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import appointmentRoutes from './routes/appointmentRoutes.js';
+import locationRoutes from './routes/locationRoutes.js';
+import { trackVisitor } from './utils/locationTracker.js';
 
 dotenv.config();
-
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(helmet());
-
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100
@@ -23,10 +23,12 @@ const corsOptions = {
     optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
-
 app.use(express.json());
 
+app.use(trackVisitor);
+
 app.use('/api/book-an-appointment', appointmentRoutes);
+app.use('/api/visitor-locations', locationRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
